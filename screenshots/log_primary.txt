@@ -1,0 +1,41 @@
+[ec2-user@ip-10-1-10-167 ~]$ mysql -h primary-rds-instance.cdptfn9skaeh.us-east-1.rds.amazonaws.com -u admin -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 53
+Server version: 8.0.35 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> CREATE TABLE user (
+    -> id INT PRIMARY KEY,
+    ->  name VARCHAR(50),
+    ->  email VARCHAR(50)
+    -> );
+ERROR 1046 (3D000): No database selected
+MySQL [(none)]> use udacity
+Database changed
+MySQL [udacity]> CREATE TABLE user (
+    -> id INT PRIMARY KEY,
+    ->  name VARCHAR(50),
+    ->  email VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.083 sec)
+
+MySQL [udacity]> INSERT INTO user (id, name, email)
+    -> VALUES (1, 'Peter', 'peter@example.com'),
+    -> (2, 'Jane', 'jane@example.com');
+Query OK, 2 rows affected (0.010 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MySQL [udacity]> SELECT * FROM user;
++----+-------+-------------------+
+| id | name  | email             |
++----+-------+-------------------+
+|  1 | Peter | peter@example.com |
+|  2 | Jane  | jane@example.com  |
++----+-------+-------------------+
+2 rows in set (0.001 sec)
+
+MySQL [udacity]> 
